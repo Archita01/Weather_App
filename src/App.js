@@ -1,8 +1,12 @@
 import React, {useState} from 'react'
+require('dotenv').config();
+console.log(process.env);
 const api = {
-  key : "efd2d1a34c3b7475b4aca64b9566da46",
-  base : "https://api.openweathermap.org/data/2.5/" 
+  key : process.env.REACT_APP_API_KEY,
+  base : process.env.REACT_APP_BASE
 }
+
+
 function App() {
 
   const [query, setQuery] = useState('');
@@ -48,7 +52,7 @@ function App() {
           {(typeof weather.main != "undefined") ? (
           <div>
             <div className="location-box">
-              <div className="location">{weather.name}, {weather.sys.country} </div>
+              <div className="location"> {weather.name}, {weather.sys.country} </div>
             <div className="date">{dateBuilder(new Date())}</div>
           </div><div className="weather-box">
               <div className="temp">
@@ -57,7 +61,7 @@ function App() {
               <div className="weather">{weather.weather[0].main}</div>
             </div>
           </div>
-           ) : ('')}
+           ) : <div className="error">{weather.message}</div>}
           </main>
     </div>
   );
