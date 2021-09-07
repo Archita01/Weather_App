@@ -2,8 +2,8 @@ import React, {useState} from 'react'
 require('dotenv').config();
 console.log(process.env);
 const api = {
-  key : process.env.REACT_APP_API_KEY,
-  base : process.env.REACT_APP_BASE
+  key : process.env.NODE_ENV === 'production' ? process.env.REACT_APP_API_KEY : process.env.REACT_APP_API_KEY,
+  base : process.env.NODE_ENV === 'production' ? process.env.REACT_APP_BASE : process.env.REACT_APP_BASE
 }
 
 
